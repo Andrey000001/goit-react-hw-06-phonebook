@@ -1,8 +1,7 @@
 import { FaGenderless } from 'react-icons/fa';
 import { Item, Name, Number, Button } from './ContactItem.styled';
 import { useDispatch } from 'react-redux';
-import { deleteUser } from '../../Redux/store';
-
+import { deleteUser } from '../../Redux/deleteContact';
 const ContactItem = ({ contact }) => {
   const { name, number, id } = contact;
   const dispatch = useDispatch();

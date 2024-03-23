@@ -1,27 +1,21 @@
 import { Formik } from 'formik';
-import { addContacts } from '../../Redux/store';
+import { addContacts } from '../../Redux/contactAdd';
 import { useDispatch } from 'react-redux';
-import { updateListContacts } from '../../Redux/store';
-import { useSelector } from 'react-redux';
+
 import {
   StyledForm,
   ButtonForm,
   Label,
   StyledField,
 } from './ContactForm.styled';
-import { useEffect } from 'react';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(({ contacts }) => contacts);
   const handleSubmit = (values, actions) => {
     actions.resetForm();
     dispatch(addContacts(values));
-    dispatch(updateListContacts({ filter: '', contacts }));
   };
-  useEffect(() => {
-    dispatch(updateListContacts({ contacts: contacts }));
-  }, [contacts, dispatch]);
+
   return (
     <Formik initialValues={{ name: '', number: '' }} onSubmit={handleSubmit}>
       <StyledForm>

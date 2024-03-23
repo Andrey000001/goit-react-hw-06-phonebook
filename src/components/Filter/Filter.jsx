@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateListContacts } from '../../Redux/store';
+import { updateListContacts } from '../../Redux/updateContacts';
 export const Filter = () => {
   const [filter, setFilter] = useState('');
   const dispatch = useDispatch();
