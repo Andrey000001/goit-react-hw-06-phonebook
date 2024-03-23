@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
-import { addContacts } from '../../Redux/contactAdd';
+import { addContact } from '../../Redux/contactSlice';
 import { useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
 
 import {
   StyledForm,
@@ -11,9 +12,10 @@ import {
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
+
   const handleSubmit = (values, actions) => {
     actions.resetForm();
-    dispatch(addContacts(values));
+    dispatch(addContact({ ...values, id: nanoid() }));
   };
 
   return (
@@ -37,7 +39,7 @@ export const ContactForm = () => {
           <StyledField
             type="tel"
             name="number"
-            pattern="[0-9]{8,}"
+            pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
             required
             placeholder="Please enter 8 digits."
           />

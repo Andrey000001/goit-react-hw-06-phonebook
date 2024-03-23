@@ -1,13 +1,13 @@
 import { FaGenderless } from 'react-icons/fa';
 import { Item, Name, Number, Button } from './ContactItem.styled';
 import { useDispatch } from 'react-redux';
-import { deleteUser } from '../../Redux/deleteContact';
+import { deleteContact } from '../../Redux/contactSlice';
 const ContactItem = ({ contact }) => {
   const { name, number, id } = contact;
   const dispatch = useDispatch();
 
-  const handleDelete = () => {
-    dispatch(deleteUser(id));
+  const handleDelete = ids => {
+    dispatch(deleteContact(ids));
   };
 
   return (
@@ -15,7 +15,7 @@ const ContactItem = ({ contact }) => {
       <FaGenderless />
       <Name>{name}:</Name>
       <Number>{number}</Number>
-      <Button onClick={() => handleDelete()}>Delete</Button>
+      <Button onClick={() => handleDelete(id)}>Delete</Button>
     </Item>
   );
 };

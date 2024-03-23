@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateListContacts } from '../../Redux/updateContacts';
+import { updateContacts } from '../../Redux/filterSlice';
+
 export const Filter = () => {
   const [filter, setFilter] = useState('');
   const dispatch = useDispatch();
-
   const handleKeyDown = e => {
     const { value } = e.target;
     setFilter(value);
-    dispatch(updateListContacts({ filter: value }));
+    dispatch(updateContacts(value.toLowerCase().trim()));
   };
 
   return (
