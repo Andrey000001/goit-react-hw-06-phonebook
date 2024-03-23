@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const contactSlice = createSlice({
   name: 'contacts',
@@ -13,7 +15,8 @@ const contactSlice = createSlice({
         ({ name }) => name === action.payload.name
       );
       if (existingContact) {
-        return alert('Contact already exists!');
+        toast.info('Contact already exists!');
+        return state;
       }
       return {
         ...state,
